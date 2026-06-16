@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ぽんず工房 | ツール一覧</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#f5f0e8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="ぽんず工房">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" href="icon.png">
+  <meta property="og:title" content="ぽんず工房">
+  <meta property="og:description" content="ぽんずの自作ツール一覧">
+  <meta property="og:image" content="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f0e8;
+      --bg2: #ede7d9;
+      --card: #fdfaf5;
+      --border: #d9cfc0;
+      --text: #3d3428;
+      --text-muted: #8a7d6b;
+      --sage: #7a9e7e;
+      --coral: #e07b6a;
+      --sky: #6aaed6;
+      --lavender: #9b87c0;
+      --shadow: 0 2px 12px rgba(61,52,40,0.10);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      padding: 32px 20px 20px;
+      text-align: center;
+    }
+    .header-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 16px rgba(61,52,40,0.15);
+    }
+    header h1 {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    header p {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* Grid */
+    main {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 8px 16px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* App card */
+    .app-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      text-decoration: none;
+      color: var(--text);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+    .app-card:active {
+      transform: scale(0.97);
+      box-shadow: 0 1px 4px rgba(61,52,40,0.08);
+    }
+    .app-card-emoji {
+      font-size: 32px;
+      line-height: 1;
+    }
+    .app-card-name {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .app-card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .app-card-arrow {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      font-size: 14px;
+      color: var(--border);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="icon.png" alt="ぽんず工房" class="header-icon">
+    <h1>ぽんず工房</h1>
+    <p>ぽんずの自作ツール一覧</p>
+  </header>
+
+  <main id="app-grid"></main>
+
+  <footer>© ぽんず工房</footer>
+
+  <script>
+    const APPS = [
+      {
+        name: 'ぽんずTodo',
+        desc: 'シンプルなTodoアプリ',
+        emoji: '✅',
+        url: 'https://kibiyakku17.github.io/ponzu-todo-app/',
+        accent: '#7a9e7e',
+      },
+      {
+        name: 'ぽんずさんぽ',
+        desc: '散歩コンシェルジュ',
+        emoji: '🐾',
+        url: 'https://kibiyakku17.github.io/ponzu-walk-weather/',
+        accent: '#6aaed6',
+      },
+      {
+        name: 'ぽんずメモ',
+        desc: 'サクッと書いてコピー',
+        emoji: '📝',
+        url: 'https://kibiyakku17.github.io/ponzu-memo/',
+        accent: '#e07b6a',
+      },
+    ];
+
+    const grid = document.getElementById('app-grid');
+    grid.innerHTML = APPS.map(app => `
+      <a class="app-card" href="${app.url}" style="--accent: ${app.accent}">
+        <span class="app-card-emoji">${app.emoji}</span>
+        <span class="app-card-name">${app.name}</span>
+        <span class="app-card-desc">${app.desc}</span>
+        <span class="app-card-arrow">→</span>
+      </a>
+    `).join('');
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
