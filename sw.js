@@ -1,4 +1,4 @@
-const CACHE = 'ponzukoubou-v1';
+const CACHE = 'ponzukoubou-v2';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon.png'];
 
 self.addEventListener('install', e => {
