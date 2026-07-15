@@ -4,192 +4,639 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ぽんず工房 | ツール一覧</title>
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#f5f0e8">
+  <meta name="description" content="毎日の暮らしを少し整える、ぽんず工房の道具たち。">
+  <meta name="theme-color" content="#f7f1e7">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="ぽんず工房">
+  <meta property="og:title" content="ぽんず工房">
+  <meta property="og:description" content="毎日の暮らしを少し整える、ぽんず工房の道具たち。">
+  <meta property="og:image" content="assets/workshop-hero.webp">
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="icon" href="icon.png">
-  <meta property="og:title" content="ぽんず工房">
-  <meta property="og:description" content="ぽんずの自作ツール一覧">
-  <meta property="og:image" content="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f5f0e8;
-      --bg2: #ede7d9;
-      --card: #fdfaf5;
-      --border: #d9cfc0;
-      --text: #3d3428;
-      --text-muted: #8a7d6b;
-      --sage: #7a9e7e;
-      --coral: #e07b6a;
-      --sky: #6aaed6;
-      --lavender: #9b87c0;
-      --shadow: 0 2px 12px rgba(61,52,40,0.10);
-      --radius: 18px;
+      --paper: #f7f1e7;
+      --surface: #fffdf8;
+      --surface-warm: #fbf6ec;
+      --ink: #3d3428;
+      --muted: #756a5a;
+      --line: #d6c8b2;
+      --sage: #667b43;
+      --blue: #356786;
+      --clay: #a5533d;
+      --indigo: #303d6a;
+      --shadow: 0 10px 30px rgba(72, 55, 34, 0.08);
+      --page-width: 1080px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Zen Kaku Gothic New', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      min-width: 320px;
       min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        repeating-linear-gradient(4deg, rgba(101, 78, 46, 0.016) 0 1px, transparent 1px 5px),
+        radial-gradient(circle at 12% 3%, rgba(192, 155, 96, 0.08), transparent 28rem),
+        var(--paper);
+      font-family: 'Zen Kaku Gothic New', 'Yu Gothic', sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Header */
-    header {
-      padding: 32px 20px 20px;
-      text-align: center;
-    }
-    .header-icon {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 16px rgba(61,52,40,0.15);
-    }
-    header h1 {
-      font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    header p {
-      font-size: 13px;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
+    img {
+      display: block;
+      max-width: 100%;
     }
 
-    /* Grid */
-    main {
-      max-width: 560px;
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(var(--page-width), calc(100% - 40px));
       margin: 0 auto;
-      padding: 8px 16px 40px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
     }
 
-    /* App card */
-    .app-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 16px;
-      text-decoration: none;
-      color: var(--text);
-      box-shadow: var(--shadow);
+    .site-header {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-      transition: transform 0.15s, box-shadow 0.15s;
-      -webkit-tap-highlight-color: transparent;
-      position: relative;
-      overflow: hidden;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 70px;
+      border-bottom: 1px solid rgba(138, 113, 76, 0.28);
     }
-    .app-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent);
-    }
-    .app-card:active {
-      transform: scale(0.97);
-      box-shadow: 0 1px 4px rgba(61,52,40,0.08);
-    }
-    .app-card-emoji {
-      font-size: 32px;
-      line-height: 1;
-    }
-    .app-card-name {
-      font-family: 'Zen Maru Gothic', sans-serif;
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      font-family: 'Zen Maru Gothic', 'Yu Gothic', sans-serif;
       font-size: 15px;
       font-weight: 700;
-    }
-    .app-card-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-    .app-card-arrow {
-      position: absolute;
-      bottom: 14px;
-      right: 14px;
-      font-size: 14px;
-      color: var(--border);
+      letter-spacing: 0.06em;
+      text-decoration: none;
     }
 
-    /* Footer */
-    footer {
+    .brand svg {
+      width: 31px;
+      height: 31px;
+      padding: 5px;
+      border: 1px solid rgba(102, 123, 67, 0.34);
+      border-radius: 50%;
+      color: var(--sage);
+      background: rgba(255, 253, 248, 0.72);
+    }
+
+    .header-caption {
+      margin: 0;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+    }
+
+    .intro {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(260px, 0.72fr);
+      align-items: center;
+      min-height: 286px;
+      margin-top: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(139, 112, 75, 0.32);
+      border-radius: 22px;
+      background:
+        linear-gradient(110deg, rgba(255, 253, 248, 0.97), rgba(250, 244, 232, 0.88)),
+        repeating-linear-gradient(0deg, rgba(90, 67, 37, 0.025) 0 1px, transparent 1px 7px);
+      box-shadow: 4px 5px 0 rgba(153, 125, 83, 0.06);
+    }
+
+    .intro::after {
+      content: '';
+      position: absolute;
+      inset: 11px;
+      border: 1px solid rgba(175, 150, 113, 0.19);
+      border-radius: 15px;
+      pointer-events: none;
+    }
+
+    .intro-copy {
+      position: relative;
+      z-index: 2;
+      padding: 40px 20px 40px 58px;
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 13px;
+      color: var(--sage);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+    }
+
+    .kicker::before {
+      content: '';
+      width: 26px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .intro h1 {
+      margin: 0;
+      font-family: 'Zen Maru Gothic', 'Yu Gothic', sans-serif;
+      font-size: clamp(40px, 5vw, 58px);
+      line-height: 1.18;
+      letter-spacing: 0.045em;
+    }
+
+    .intro-tagline {
+      width: max-content;
+      max-width: 100%;
+      margin: 18px 0 0;
+      padding-top: 13px;
+      border-top: 1px dashed rgba(102, 123, 67, 0.43);
+      color: var(--ink);
+      font-family: 'Zen Maru Gothic', 'Yu Gothic', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .intro-art {
+      position: relative;
+      z-index: 1;
+      align-self: stretch;
+      display: grid;
+      place-items: center;
+      margin: 0;
+      padding: 16px 34px 16px 10px;
+      background: radial-gradient(circle at center, rgba(214, 184, 126, 0.15), transparent 64%);
+    }
+
+    .intro-art img {
+      width: min(100%, 260px);
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 50% 46% 48% 52%;
+      mix-blend-mode: multiply;
+    }
+
+    .tools {
+      padding: 54px 0 62px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin: 0 0 30px;
+      font-family: 'Zen Maru Gothic', 'Yu Gothic', sans-serif;
+      font-size: clamp(27px, 3.4vw, 39px);
+      letter-spacing: 0.12em;
       text-align: center;
-      padding: 20px;
-      font-size: 11px;
-      color: var(--text-muted);
+    }
+
+    .title-sprig {
+      width: 55px;
+      height: 27px;
+      color: var(--sage);
+      opacity: 0.76;
+    }
+
+    .title-sprig:last-child {
+      transform: scaleX(-1);
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .tool-card {
+      --accent: var(--sage);
+      --soft: #e8eddd;
+      display: grid;
+      grid-template-columns: 174px minmax(0, 1fr);
+      grid-template-rows: 1fr auto;
+      min-width: 0;
+      min-height: 218px;
+      overflow: hidden;
+      border: 1px solid var(--accent);
+      border-radius: 18px;
+      color: var(--ink);
+      background: rgba(255, 253, 248, 0.91);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 17px 34px rgba(72, 55, 34, 0.12);
+    }
+
+    .tool-card:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .tool-visual {
+      position: relative;
+      display: grid;
+      grid-row: 1 / 3;
+      place-items: center;
+      min-width: 0;
+      overflow: hidden;
+      border-right: 1px solid rgba(132, 104, 66, 0.22);
+      background:
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.78), transparent 68%),
+        #f1ebe1;
+    }
+
+    .tool-visual::after {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(145, 121, 88, 0.16);
+      border-radius: 44% 48% 45% 50%;
+      pointer-events: none;
+    }
+
+    .tool-visual img {
+      width: min(76%, 142px);
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 46% 50% 45% 49%;
+      mix-blend-mode: multiply;
+      filter: saturate(0.72) contrast(0.92) brightness(1.03);
+      transition: transform 260ms ease;
+    }
+
+    .tool-card:hover .tool-visual img {
+      transform: scale(1.025);
+    }
+
+    .tool-copy {
+      align-self: end;
+      padding: 30px 25px 18px;
+      text-align: left;
+    }
+
+    .tool-card h2 {
+      margin: 0;
+      color: var(--accent);
+      font-family: 'Zen Maru Gothic', 'Yu Gothic', sans-serif;
+      font-size: clamp(21px, 2.2vw, 26px);
+      line-height: 1.45;
+      letter-spacing: 0.045em;
+    }
+
+    .tool-description {
+      display: block;
+      max-width: none;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    .tool-action {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-height: 48px;
+      padding: 10px 24px;
+      border-top: 1px solid rgba(132, 104, 66, 0.22);
+      color: var(--accent);
+      font-family: 'Zen Maru Gothic', 'Yu Gothic', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .tool-action::after {
+      content: '→';
+      margin-left: 10px;
+      transition: transform 180ms ease;
+    }
+
+    .tool-card:hover .tool-action::after {
+      transform: translateX(4px);
+    }
+
+    .site-footer {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 0 42px;
+      color: var(--muted);
+      font-family: 'Zen Maru Gothic', 'Yu Gothic', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-align: center;
+    }
+
+    .site-footer::before,
+    .site-footer::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(102, 123, 67, 0.5));
+    }
+
+    .site-footer::after {
+      transform: scaleX(-1);
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 24px, 620px);
+      }
+
+      .site-header {
+        min-height: 60px;
+      }
+
+      .header-caption {
+        display: none;
+      }
+
+      .intro {
+        grid-template-columns: minmax(0, 1fr) 122px;
+        min-height: 208px;
+        margin-top: 18px;
+        border-radius: 18px;
+      }
+
+      .intro::after {
+        inset: 8px;
+        border-radius: 12px;
+      }
+
+      .intro-copy {
+        padding: 25px 0 25px 27px;
+      }
+
+      .kicker {
+        margin-bottom: 9px;
+        font-size: 8px;
+      }
+
+      .kicker::before {
+        width: 18px;
+      }
+
+      .intro h1 {
+        font-size: clamp(32px, 9vw, 42px);
+      }
+
+      .intro-tagline {
+        margin-top: 13px;
+        padding-top: 10px;
+        font-size: 13px;
+        line-height: 1.75;
+      }
+
+      .intro-art {
+        padding: 12px 13px 12px 0;
+      }
+
+      .intro-art img {
+        width: 112px;
+      }
+
+      .tools {
+        padding: 36px 0 44px;
+      }
+
+      .section-title {
+        gap: 8px;
+        margin-bottom: 20px;
+        font-size: clamp(25px, 7.4vw, 32px);
+        letter-spacing: 0.06em;
+      }
+
+      .title-sprig {
+        width: 28px;
+      }
+
+      .tool-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .tool-card {
+        grid-template-columns: 38% 62%;
+        grid-template-rows: 1fr auto;
+        min-height: 190px;
+        border-width: 1px;
+        border-radius: 15px;
+      }
+
+      .tool-visual {
+        grid-row: 1 / 3;
+        min-height: 100%;
+        border-right: 1px solid rgba(132, 104, 66, 0.23);
+      }
+
+      .tool-visual::after {
+        inset: 12px;
+      }
+
+      .tool-visual img {
+        width: min(82%, 130px);
+      }
+
+      .tool-copy {
+        align-self: end;
+        padding: 22px 18px 12px;
+        text-align: left;
+      }
+
+      .tool-card h2 {
+        font-size: clamp(18px, 5.3vw, 23px);
+        letter-spacing: 0.02em;
+      }
+
+      .tool-description {
+        margin-top: 8px;
+        font-size: 12px;
+        line-height: 1.75;
+      }
+
+      .tool-action {
+        min-height: 48px;
+        padding: 10px 18px;
+        font-size: 12px;
+      }
+
+      .site-footer {
+        gap: 9px;
+        padding-bottom: 30px;
+        font-size: 10px;
+        letter-spacing: 0.05em;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .intro {
+        grid-template-columns: minmax(0, 1fr) 96px;
+      }
+
+      .intro-copy {
+        padding-left: 21px;
+      }
+
+      .intro-art img {
+        width: 90px;
+      }
+
+      .tool-card {
+        grid-template-columns: 36% 64%;
+        min-height: 184px;
+      }
+
+      .tool-copy {
+        padding-right: 14px;
+        padding-left: 15px;
+      }
+
+      .tool-action {
+        padding-right: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .tool-card,
+      .tool-visual img,
+      .tool-action::after {
+        transition: none;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="ぽんず工房" class="header-icon">
-    <h1>ぽんず工房</h1>
-    <p>ぽんずの自作ツール一覧</p>
-  </header>
+  <div class="page">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="ぽんず工房 トップ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 21v-9" />
+          <path d="M12 13C10.7 8.8 7.5 7.6 4.5 8.2c.1 3.6 2.5 6.3 7.5 5.7" />
+          <path d="M12 11.6c1.1-3.8 4-5.1 7.2-4.5.1 3.3-2.2 5.7-7.2 5.4" />
+        </svg>
+        <span>ぽんず工房</span>
+      </a>
+      <p class="header-caption">SMALL TOOLS FOR EVERYDAY LIFE</p>
+    </header>
 
-  <main id="app-grid"></main>
+    <main>
+      <section class="intro" aria-labelledby="site-title">
+        <div class="intro-copy">
+          <p class="kicker">PONZU KOUBOU</p>
+          <h1 id="site-title">ぽんず工房</h1>
+          <p class="intro-tagline">つくったものが暮らす、<br>小さな工房。</p>
+        </div>
+        <figure class="intro-art">
+          <img src="assets/workshop-hero.webp" alt="色鉛筆で描かれた、植物と小さな機械のあるぽんず工房">
+        </figure>
+      </section>
 
-  <footer>© ぽんず工房</footer>
+      <section class="tools" aria-labelledby="tools-title">
+        <h2 class="section-title" id="tools-title">
+          <svg class="title-sprig" viewBox="0 0 56 28" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 23c13-2 22-9 30-20" />
+            <path d="M15 18c-1-5-4-7-8-7 0 4 2 7 8 7Z" />
+            <path d="M23 13c-1-5-3-7-7-8 0 4 2 7 7 8Z" />
+            <path d="M28 9c4-2 7-2 10 0-2 3-5 4-10 0Z" />
+          </svg>
+          <span>工房の道具たち</span>
+          <svg class="title-sprig" viewBox="0 0 56 28" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 23c13-2 22-9 30-20" />
+            <path d="M15 18c-1-5-4-7-8-7 0 4 2 7 8 7Z" />
+            <path d="M23 13c-1-5-3-7-7-8 0 4 2 7 7 8Z" />
+            <path d="M28 9c4-2 7-2 10 0-2 3-5 4-10 0Z" />
+          </svg>
+        </h2>
+
+        <div class="tool-grid">
+          <a class="tool-card" href="https://kibiyakku17.github.io/ponzu-todo-app/" style="--accent: #667b43; --soft: #e8eddd;" aria-label="ぽんずTodoをひらく">
+            <span class="tool-visual">
+              <img src="assets/tool-todo.webp" alt="タスク用紙と小さな芽が並ぶ、色鉛筆の作業机">
+            </span>
+            <span class="tool-copy">
+              <h2>ぽんずTodo</h2>
+              <span class="tool-description">考えるのはAI。やるのはあなた。</span>
+            </span>
+            <span class="tool-action">ひらく</span>
+          </a>
+
+          <a class="tool-card" href="https://kibiyakku17.github.io/ponzu-walk-weather/" style="--accent: #356786; --soft: #e0edf0;" aria-label="ぽんずさんぽをひらく">
+            <span class="tool-visual">
+              <img src="assets/tool-walk.webp" alt="雲や風を観測する、色鉛筆の小さな散歩小屋">
+            </span>
+            <span class="tool-copy">
+              <h2>ぽんずさんぽ</h2>
+              <span class="tool-description">散歩コンシェルジュ</span>
+            </span>
+            <span class="tool-action">ひらく</span>
+          </a>
+
+          <a class="tool-card" href="https://kibiyakku17.github.io/ponzu-timelog/" style="--accent: #a5533d; --soft: #f3ded4;" aria-label="ぽんず時間ログをひらく">
+            <span class="tool-visual">
+              <img src="assets/tool-timelog.webp" alt="時計と歯車が並ぶ、色鉛筆の時間工房">
+            </span>
+            <span class="tool-copy">
+              <h2>ぽんず時間ログ</h2>
+              <span class="tool-description">今日、何に時間を使ったか</span>
+            </span>
+            <span class="tool-action">ひらく</span>
+          </a>
+
+          <a class="tool-card" href="https://kibiyakku17.github.io/ponzu-hoshi-koujou/" style="--accent: #303d6a; --soft: #dfe3ee;" aria-label="ひらけ！ほしこうじょうをひらく">
+            <span class="tool-visual">
+              <img src="assets/tool-hoshi.webp" alt="星の結晶を運ぶ、色鉛筆の夜空の機械工場">
+            </span>
+            <span class="tool-copy">
+              <h2>ひらけ！<br>ほしこうじょう</h2>
+              <span class="tool-description">不時着ロボの工場づくりゲーム</span>
+            </span>
+            <span class="tool-action">ひらく</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">静かな余白に、育つ小世界。</footer>
+  </div>
 
   <script>
-    const APPS = [
-      {
-        name: 'ぽんずTodo',
-        desc: '考えるのはAI。やるのはあなた。',
-        emoji: '✅',
-        url: 'https://kibiyakku17.github.io/ponzu-todo-app/',
-        accent: '#7a9e7e',
-      },
-      {
-        name: 'ぽんずさんぽ',
-        desc: '散歩コンシェルジュ',
-        emoji: '🐾',
-        url: 'https://kibiyakku17.github.io/ponzu-walk-weather/',
-        accent: '#6aaed6',
-      },
-      {
-        name: 'ぽんず時間ログ',
-        desc: '今日、何に時間を使ったか',
-        emoji: '🍊',
-        url: 'https://kibiyakku17.github.io/ponzu-timelog/',
-        accent: '#7FA889',
-      },
-      {
-        name: 'ひらけ！ほしこうじょう',
-        desc: '不時着ロボの工場づくりゲーム',
-        emoji: '📡',
-        url: 'https://kibiyakku17.github.io/ponzu-hoshi-koujou/',
-        accent: '#9b87c0',
-      },
-    ];
-
-    const grid = document.getElementById('app-grid');
-    grid.innerHTML = APPS.map(app => `
-      <a class="app-card" href="${app.url}" style="--accent: ${app.accent}">
-        <span class="app-card-emoji">${app.emoji}</span>
-        <span class="app-card-name">${app.name}</span>
-        <span class="app-card-desc">${app.desc}</span>
-        <span class="app-card-arrow">→</span>
-      </a>
-    `).join('');
-
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(() => {});
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
     }
   </script>
 </body>

@@ -1,26 +1,35 @@
-const CACHE = 'ponzukoubou-v2';
-const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon.png'];
+const CACHE = 'ponzukoubou-v5';
+const ASSETS = [
+  './',
+  './index.html',
+  './manifest.webmanifest',
+  './icon.png',
+  './assets/workshop-hero.webp',
+  './assets/tool-todo.webp',
+  './assets/tool-walk.webp',
+  './assets/tool-timelog.webp',
+  './assets/tool-hoshi.webp',
+];
 
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
   self.skipWaiting();
 });
 
-self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(keys =>
-    Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-  ));
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))
+    )
+  );
   self.clients.claim();
 });
 
-self.addEventListener('fetch', e => {
-  if (e.request.mode === 'navigate') {
-    e.respondWith(
-      fetch(e.request).catch(() => caches.match(e.request))
-    );
+self.addEventListener('fetch', event => {
+  if (event.request.mode === 'navigate') {
+    event.respondWith(fetch(event.request).catch(() => caches.match('./index.html')));
     return;
   }
-  e.respondWith(
-    caches.match(e.request).then(r => r || fetch(e.request))
-  );
+
+  event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)));
 });
