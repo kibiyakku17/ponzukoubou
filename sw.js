@@ -1,4 +1,4 @@
-const CACHE = 'ponzukoubou-v5';
+const CACHE = 'ponzukoubou-v6';
 const ASSETS = [
   './',
   './index.html',

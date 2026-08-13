@@ -1,7 +1,7 @@
 {
   "name": "ぽんず工房",
   "short_name": "ぽんず工房",
-  "description": "毎日の暮らしを少し整える、ぽんず工房の道具たち。",
+  "description": "AIと一緒に作ったブラウザゲームと、暮らしの小さな道具を公開するぽんず工房のポータル。",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f7f1e7",
